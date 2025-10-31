@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Circuit Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>⚛️ Quantum Circuit Simulator</h1>
+        <p class="subtitle">Build and simulate quantum circuits in your browser</p>
+
+        <div class="main-grid">
+            <div class="panel">
+                <h2>🎛️ Gate Palette</h2>
+                <div class="gate-palette">
+                    <button class="gate-btn" onclick="selectGate('H')">H <span class="info-badge">Hadamard</span></button>
+                    <button class="gate-btn" onclick="selectGate('X')">X <span class="info-badge">Pauli-X</span></button>
+                    <button class="gate-btn" onclick="selectGate('Y')">Y <span class="info-badge">Pauli-Y</span></button>
+                    <button class="gate-btn" onclick="selectGate('Z')">Z <span class="info-badge">Pauli-Z</span></button>
+                    <button class="gate-btn special" onclick="selectGate('CNOT')">CNOT <span class="info-badge">2-Qubit</span></button>
+                </div>
+
+                <h2 style="margin-top: 20px;">📚 Examples</h2>
+                <div class="example-circuits">
+                    <button class="example-btn" onclick="loadExample('bell')">Bell State</button>
+                    <button class="example-btn" onclick="loadExample('superposition')">Superposition</button>
+                    <button class="example-btn" onclick="loadExample('entangle')">Entanglement</button>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>🔧 Circuit Builder</h2>
+                <div class="circuit-canvas" id="circuitCanvas">
+                    <div class="qubit-line">
+                        <div class="qubit-label">|q₀⟩ = |0⟩</div>
+                        <div class="circuit-line" id="qubit0">
+                            <div class="gate-slot" onclick="placeGate(0, 0)"></div>
+                            <div class="gate-slot" onclick="placeGate(0, 1)"></div>
+                            <div class="gate-slot" onclick="placeGate(0, 2)"></div>
+                            <div class="gate-slot" onclick="placeGate(0, 3)"></div>
+                            <div class="gate-slot" onclick="placeGate(0, 4)"></div>
+                        </div>
+                    </div>
+                    <div class="qubit-line">
+                        <div class="qubit-label">|q₁⟩ = |0⟩</div>
+                        <div class="circuit-line" id="qubit1">
+                            <div class="gate-slot" onclick="placeGate(1, 0)"></div>
+                            <div class="gate-slot" onclick="placeGate(1, 1)"></div>
+                            <div class="gate-slot" onclick="placeGate(1, 2)"></div>
+                            <div class="gate-slot" onclick="placeGate(1, 3)"></div>
+                            <div class="gate-slot" onclick="placeGate(1, 4)"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="control-btn" onclick="runCircuit()">▶️ Run Circuit</button>
+            <button class="control-btn reset" onclick="resetCircuit()">🔄 Reset</button>
+        </div>
+
+        <div class="results-grid">
+            <div class="panel">
+                <h2>📊 State Vector</h2>
+                <div class="state-vector" id="stateVector">
+                    <div class="state-item">
+                        <span>|00⟩</span>
+                        <span>1.000 + 0.000i</span>
+                    </div>
+                    <div class="state-item">
+                        <span>|01⟩</span>
+                        <span>0.000 + 0.000i</span>
+                    </div>
+                    <div class="state-item">
+                        <span>|10⟩</span>
+                        <span>0.000 + 0.000i</span>
+                    </div>
+                    <div class="state-item">
+                        <span>|11⟩</span>
+                        <span>0.000 + 0.000i</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>🎲 Measurement Probabilities</h2>
+                <div class="probability-bars" id="probabilities">
+                    <div class="prob-item">
+                        <div class="prob-label">|00⟩</div>
+                        <div class="prob-bar-container">
+                            <div class="prob-bar" style="width: 100%">100%</div>
+                        </div>
+                    </div>
+                    <div class="prob-item">
+                        <div class="prob-label">|01⟩</div>
+                        <div class="prob-bar-container">
+                            <div class="prob-bar" style="width: 0%">0%</div>
+                        </div>
+                    </div>
+                    <div class="prob-item">
+                        <div class="prob-label">|10⟩</div>
+                        <div class="prob-bar-container">
+                            <div class="prob-bar" style="width: 0%">0%</div>
+                        </div>
+                    </div>
+                    <div class="prob-item">
+                        <div class="prob-label">|11⟩</div>
+                        <div class="prob-bar-container">
+                            <div class="prob-bar" style="width: 0%">0%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="quantum.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
